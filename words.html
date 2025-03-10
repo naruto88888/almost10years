@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fornication</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #f9eaca;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 18px;
+            z-index: 2000;
+        }
+
+        .menu-button,
+        .favorites-button {
+            position: fixed;
+            top: 10px;
+            background-color: #f4b977;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 2050;
+        }
+
+        .menu-button {
+            right: 10px;
+            z-index: 2050;
+        }
+
+        .favorites-button {
+            left: 10px;
+        }
+
+        .menu-overlay,
+        .favorites-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(246 215 215);
+            color: white;
+            text-align: center;
+            padding-top: 50px;
+            z-index: 100;
+        }
+
+        .menu-overlay a,
+        .favorites-overlay div {
+            display: block;
+            color: #6e4949;
+            font-size: 24px;
+            margin: 15px;
+            text-decoration: none;
+        }
+
+        .menu-overlay a:hover,
+        .favorites-overlay div:hover {
+            text-decoration: underline;
+        }
+
+        .close-menu,
+        .close-favorites {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 50px;
+            cursor: pointer;
+        }
+
+        .favorite-button {
+            cursor: pointer;
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: gold;
+        }
+
+        .favorite-content {
+            display: none;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #bbc4f380;
+            border: 1px solid #ccc;
+        }
+
+
+        #next-question {
+            position: absolute;
+            top: 545px;
+            left: 90%;
+            transform: translateX(-50%);
+            padding: 4px 29px;
+            font-size: 14px;
+            cursor: pointer;
+            background-color: gold;
+        }
+
+        #link-form {
+            margin-top: -1px;
+            margin-left: -976px;
+        }
+
+        #link-form input {
+            padding: 5px;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        #link-form button {
+            padding: 5px 10px;
+            font-size: 16px;
+        }
+
+        .delete-link {
+            font-size: 18px;
+            cursor: pointer;
+            color: red;
+            margin-left: 10px;
+        }
+
+        .porn {
+            padding: 10px 0;
+            text-align: center;
+            font-size: 26px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            color: #8a5954
+        }
+
+        .answer {
+            display: flex;
+            flex-direction: column;
+            /* Элементы располагаются вертикально */
+            gap: 10px;
+            /* Отступ между элементами */
+        }
+
+        .text {
+            left: 607px;
+            top: -37px;
+            padding: 11px 16px;
+            border: 1px solid #4f4b4b;
+            background-color: #ffffff;
+            z-index: 1000;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            width: 748px;
+            font-size: 30px;
+            height: 460px;
+        }
+
+        .text-section {
+            padding: 6px;
+            background-color: #4b1225;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            top: 36px;
+            display: inline-block;
+            width: 1400px;
+            height: 1096px;
+        }
+
+        .ask {
+            position: relative;
+            top: -175px;
+            left: -44;
+            z-index: 1000;
+        }
+
+        .rezult {
+            position: relative;
+            top: 21px;
+            left: 0;
+            color: green;
+        }
+
+        .answer button {
+            align-self: center;
+            top: -79px;
+            left: -404px;
+            position: relative;
+            z-index: 1000;
+            background: none;
+            /* Убираем фон */
+            border: none;
+            /* Убираем границы */
+            padding: 0;
+            /* Убираем внутренние отступы */
+            font: inherit;
+            /* Наследуем шрифт от родителя */
+            color: inherit;
+            /* Наследуем цвет текста */
+            cursor: pointer;
+            /* Оставляем возможность нажимать */
+        }
+
+        .answer button:nth-child(2) {
+            top: -102px;
+            left: -5px;
+            position: relative;
+            align-self: center;
+            z-index: 1000;
+        }
+
+        .answer button:nth-child(3) {
+            top: -130px;
+            left: 384px;
+            position: relative;
+            align-self: center;
+            z-index: 1000;
+        }
+
+        .cot {
+            z-index: -1000;
+            position: relative;
+            top: -16px;
+            left: 0;
+        }
+
+        .cot1 {
+            width: 275px;
+            top: -4px;
+            left: -125px;
+            z-index: 1000;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .cot2 {
+            width: 275px;
+            top: -4px;
+            left: -6px;
+            z-index: 1000;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .cot3 {
+            width: 275px;
+            top: -4px;
+            left: 100px;
+            z-index: 1000;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        #comments {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .go {
+            background-color: lightgoldenrodyellow;
+        }
+
+        #gif-container {
+            width: 43px;
+            position: relative;
+            left: 67px;
+            top: 144px;
+        }
+
+        .appropriate {
+            position: relative;
+            color: burlywood;
+            font-family: cursive;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header"><span style="color: #E32636">F </span><span style="color: #E32636">O </span><span
+            style="color: #E34234">R </span><span style="color: #FF9999">N </span><span style="color: #FFC0CB">I
+        </span><span style="color: #FFC0CB">C </span><span style="color: #FFC0CB">A </span><span
+            style="color: #FF9999">T </span><span>I </span><span style="color: #FF6F61">O </span><span
+            style="color: #E34234">N</span></div>
+
+    <div class="menu-overlay" id="menuOverlay">
+        <span class="close-menu" onclick="closeMenu()">&times;</span>
+        <div id="link-list"></div>
+        <div class="porn">my preferred porno</div>
+        <div id="link-form">
+            <input type="text" id="new-link" placeholder="add a link">
+            <input type="text" id="link-name" placeholder="name a link">
+            <button onclick="addLink()">new link</button>
+        </div>
+    </div>
+    <div class="favorites-overlay" id="favoritesOverlay">
+        <span class="close-favorites" onclick="closeFavorites()">&times;</span>
+        <h2 class="porn">much-loved</h2>
+        <div id="favoritesList"></div>
+        <div id="favoriteContent" class="favorite-content">
+            <p id="favoriteText"></p>
+            <button onclick="nextFavorite()">next</button>
+        </div>
+    </div>
+    <div class="appropriate">please, dear, read the word and choose a value that you think is appropriate</div>
+    <img class="cot" src="https://raw.githubusercontent.com/naruto88888/almost10years/main/foto/keet.png"
+        alt="Фото из репозитория" width="300">
+    <div class="ask" class="question" id="question"></div>
+    <img class="cot1" src="https://raw.githubusercontent.com/naruto88888/almost10years/main/foto/рамка.png"
+        alt="Фото из репозитория" width="300">
+    <img class="cot2" src="https://raw.githubusercontent.com/naruto88888/almost10years/main/foto/рамка.png"
+        alt="Фото из репозитория" width="300">
+    <img class="cot3" src="https://raw.githubusercontent.com/naruto88888/almost10years/main/foto/рамка.png"
+        alt="Фото из репозитория" width="300">
+    <div class="answer" class="options" id="options"></div>
+    <p class="rezult" id="result"></p>
+    <div class="text-section">
+        <div id="gif-container"></div>
+
+        <p class="text" id="extra-text" style="display: table-caption;">
+    </div>
+
+    </p>
+    <button id="next-question" onclick="nextQuestion()">again</button>
+
+    <div id="comment-section" class="comment-section">
+
+        <div id="comments"></div>
+    </div>
+
+    <script>
+        let questions = [
+            {
+                question: "Facial in Porn",
+                options: ["the pleasure of brute force", "Gags and other sex toys", "oral caresses"],
+                correct: 2
+            },
+            {
+                question: "Impact Play",
+                options: ["flogging", "binding", "sexual control"],
+                correct: 0
+            },
+            {
+                question: "Blowjob or Fellatio",
+                options: ["classic sex", "carpet munching", "finger stimulation"],
+                correct: 1
+            },
+            {
+                question: "Teabagging",
+                options: ["Clothing friction", "licking", "erotic games"],
+                correct: 1
+            },
+            {
+                question: "Full Nelson",
+                options: ["orgasm of moving breasts", "virtual sex", "Sexually dominant posture"],
+                correct: 2
+            },
+            {
+                question: "BDSM",
+                options: ["pleasure, orgasm, blowjob", "perversion", "bondage, discecycline"],
+                correct: 2
+            },
+            {
+                question: "CFNM",
+                options: ["dressed girl, naked man", "dressed man, naked girl", "naked bodies"],
+                correct: 0
+            },
+            {
+                question: "Vanilla sex",
+                options: ["bad sex", "normal sex", "sex with BDSM"],
+                correct: 1
+            },
+            {
+                question: "Vikharita",
+                options: ["nonpenetrative sex", "surface friction", "oral sex"],
+                correct: 0
+            },
+            {
+                question: "Sapiosexuals",
+                options: ["sexual manipulation", "partner fingering", "people who excite the intellect"],
+                correct: 2
+            }
+        ];
+
+        let extraTexts = [
+            "Facial is a sexual act that involves the woman receiving the facial, allowing a man to ejaculate onto her face.It’s a sultry act of intimacy that allows two people to explore their sexual desires.Whether in the heat of the moment or carefully planned out, facials can be a powerful way for both partners to express themselves and revel in pleasure.",
+            "Impact play is a sexual act that involves using physical force, usually through spanking or hitting. You can use it to increase the intensity and pleasure of a sexual experience; however, it has risks. So if you want to do it, do it with enthusiastic consent and communication between partners to ensure safety. Like any other such sex act, some people consider impact play as an empowering and enjoyable activity, while others find it triggering.",
+            "Blowjob, also known as Fellatio, giving head, or sucking off, is eating and licking pussy or dick! This involves using the tongue and lips to stimulate the other person’s penis or pussy. It is an enjoyable activity that can enhance a couple’s intimacy and sexual pleasure with consent and mutual respect.",
+            "Teabagging is a sexual act where the male partner dips his testicles into and out of the partner’s mouth, similar to how a teabag is used while making a cup of tea. If you’re looking for a wild time, why not give teabagging a try? Dip his testicles into your mouth and let him enjoy what tantalizing pleasure it brings. Stimulate each other with intense sensations and let the sparks fly! Teabagging is the perfect way to get your partner hot and bothered.",
+            "If you want to add a bit of kink to your bedroom repertoire, the full nelson is just what you need. This sultry and slutty position will have you and your partner grooving as it puts the guy on his back with the girl straddling him. The guy takes both of his arms, places them underneath her arms, and wraps them around her neck for a tight grip. She then holds onto her legs behind her head, which gives the guy complete control over the situation, pushing her face down towards the action.It’s easy to see why this position was so popular–who wouldn’t want to dominate their partner like that?",
+            "BDSM stands for bondage and discipline, dominance and submission, and sadism and masochism. It’s a type of consensual sexual activity that involves various forms of physical restraint, intense sensory stimulation, and role-playing. ",
+            "CFNM stands for “Clothed Female Nude Male.” This term or fetish is often paired up with female domination and teasing. Other times it’s just a group of CFNM babes jerking off a dude, fucking, or having fun with strippers in a club.",
+            "An ordinary sexual act devoid of any sexiness in the form of role-playing or sexual gadgets and accessories. Some consider this option of closeness too soft and intimate, because both partners are focused on their feelings, not distracting from external factors or additional stimulating objects.",
+            "A sexual practice in which the man moves his penis between the woman’s tightly compressed hips until both partners reach orgasm. This type of satisfaction is especially practiced by those couples who do not suit (due to certain circumstances) the traditional way of intimate intimacy.",
+            "people who are excited by intelligence. They consider the mind to be the most sexual organ and experience an irresistible attraction to analytical logic and the ability to beautifully express their thoughts."
+        ];
+
+        const gifs = [
+            "https://raw.githubusercontent.com/naruto88888/almost10years/main/foto/конч на лицо.gif",  // гифка для первого вопроса
+            "https://raw.githubusercontent.com/naruto88888/almost10years/main/foto/порка.gif", // гифка для второго вопроса
+            "https://raw.githubusercontent.com/naruto88888/almost10years/main/foto/отсос.gif",  // гифка для третьего вопроса
+            "https://raw.githubusercontent.com/naruto88888/almost10years/main/foto/яйца.gif",
+            "https://raw.githubusercontent.com/naruto88888/almost10years/main/foto/поза ЗЮ.gif",
+            "https://raw.githubusercontent.com/naruto88888/almost10years/main/foto/БДС.gif",
+            "https://raw.githubusercontent.com/naruto88888/almost10years/main/foto/женщина дом.gif",
+            "https://raw.githubusercontent.com/naruto88888/almost10years/main/foto/ванильный секс.gif",
+            "https://raw.githubusercontent.com/naruto88888/almost10years/main/foto/без проникновения.gif",
+            "https://raw.githubusercontent.com/naruto88888/almost10years/main/foto/возбуждение от ума.gif"
+        ];
+
+
+        let currentQuestionIndex = 0;
+        let favorites = [];
+        let comments = [];
+        let links = [];
+        let currentFavoriteIndex = 0;
+
+        function loadData() {
+            const savedFavorites = localStorage.getItem("favorites");
+            const savedComments = localStorage.getItem("comments");
+            const savedLinks = localStorage.getItem("links");
+
+            if (savedFavorites) favorites = JSON.parse(savedFavorites);
+            if (savedComments) comments = JSON.parse(savedComments);
+            if (savedLinks) links = JSON.parse(savedLinks);
+
+            console.log('Loaded data:', { favorites, comments, links });
+            updateFavoritesList();
+            loadLinks();
+            displayComments();  // Загружаем комментарии при перезагрузке
+        }
+
+        function saveData() {
+            localStorage.setItem("favorites", JSON.stringify(favorites));
+            localStorage.setItem("comments", JSON.stringify(comments));
+            localStorage.setItem("links", JSON.stringify(links));
+            console.log('Saved data:', { favorites, comments, links });
+        }
+
+        function loadQuestion() {
+            let questionData = questions[currentQuestionIndex];
+            document.getElementById("question").textContent = questionData.question;
+            let optionsDiv = document.getElementById("options");
+            optionsDiv.innerHTML = "";
+
+            questionData.options.forEach((option, index) => {
+                let button = document.createElement("button");
+                button.textContent = option;
+                button.onclick = function () { checkAnswer(index); };
+                optionsDiv.appendChild(button);
+            });
+
+            document.getElementById("result").textContent = "";
+            document.getElementById("extra-text").style.display = "none";
+            document.getElementById("next-question").style.display = "block";
+        }
+
+        function checkAnswer(selectedIndex) {
+            let questionData = questions[currentQuestionIndex];
+            let result = document.getElementById("result");
+            let gifContainer = document.getElementById("gif-container");
+
+            if (selectedIndex === questionData.correct) {
+                result.textContent = "That’s right, honey!";
+                result.style.color = "green";
+                document.getElementById("extra-text").textContent = extraTexts[currentQuestionIndex];
+                document.getElementById("extra-text").style.display = "block";
+
+                // Показать соответствующую гифку
+                gifContainer.innerHTML = `<img src="${gifs[currentQuestionIndex]}" alt="Correct answer gif">`;
+            } else {
+                result.textContent = "It’s wrong but you’re still sweet! Try again.";
+                result.style.color = "red";
+
+                // Не удаляем гифку, если ответ неверный
+            }
+        }
+
+        function nextQuestion() {
+            // Очищаем гифку только при переходе к следующему вопросу
+            let gifContainer = document.getElementById("gif-container");
+            gifContainer.innerHTML = '';
+
+            currentQuestionIndex = (currentQuestionIndex + 1) % questions.length;
+            loadQuestion();
+            displayComments();
+        }
+
+        function updateFavoritesList() {
+            let list = document.getElementById("favoritesList");
+            list.innerHTML = favorites.map((fav, index) => `
+        <div>
+            <a href="#" onclick="showFavorite(${index})">${fav.name || "Избранное"}</a>
+            <span class="delete-link" onclick="deleteFavorite(${index})">❌</span>
+        </div>
+    `).join('');
+        }
+
+        function showFavorite(index) {
+            currentFavoriteIndex = index;
+            let favorite = favorites[index];
+            let favoriteElement = document.getElementById("favoriteText");
+            favoriteElement.textContent = favorite.text;
+            document.getElementById("favoriteContent").style.display = "block";
+            window.scrollTo({
+                top: document.getElementById("favoriteContent").offsetTop,
+                behavior: "smooth"
+            });
+        }
+
+        function nextFavorite() {
+            currentFavoriteIndex = (currentFavoriteIndex + 1) % favorites.length;
+            showFavorite(currentFavoriteIndex);
+        }
+
+        function deleteFavorite(index) {
+            favorites.splice(index, 1);
+            saveData();
+            updateFavoritesList();
+            document.getElementById("favoriteContent").style.display = "none";
+        }
+
+        // Функция для добавления нового комментария
+        function addComment() {
+            const commentInput = document.getElementById("commentInput");
+            const newComment = commentInput.value.trim();
+
+            if (newComment) {
+                // Если для текущего вопроса нет массива комментариев, создаем его
+                if (!comments[currentQuestionIndex]) {
+                    comments[currentQuestionIndex] = [];
+                }
+
+                // Добавляем новый комментарий
+                comments[currentQuestionIndex].push(newComment);
+
+                // Сохраняем данные в localStorage
+                saveData();
+
+                // Обновляем отображение комментариев
+                displayComments();
+
+                // Очищаем поле ввода
+                commentInput.value = "";
+            } else {
+                alert("Комментарий не может быть пустым!");
+            }
+        }
+
+        // Отображение комментариев для текущего вопроса
+        function displayComments() {
+            const commentsDiv = document.getElementById("comments");
+            commentsDiv.innerHTML = '';
+
+            // Загружаем комментарии для текущего вопроса
+            let questionComments = comments[currentQuestionIndex] || [];
+
+            console.log('Displaying comments for question', currentQuestionIndex, questionComments);
+
+            // Отображаем все комментарии
+            questionComments.forEach((comment, index) => {
+                const commentElement = document.createElement("div");
+                commentElement.classList.add("comment");
+                commentElement.textContent = comment;
+
+                const deleteButton = document.createElement("span");
+                deleteButton.classList.add("delete-comment");
+                deleteButton.textContent = "❌";
+                deleteButton.onclick = function () { deleteComment(index); };
+                commentElement.appendChild(deleteButton);
+
+                commentsDiv.appendChild(commentElement);
+            });
+        }
+
+        // Удаление комментария
+        function deleteComment(index) {
+            comments[currentQuestionIndex].splice(index, 1);  // Удаляем комментарий по индексу
+            saveData();
+            displayComments();
+        }
+
+        // Функция загрузки ссылок
+        function loadLinks() {
+            const linkList = document.getElementById("link-list");
+            linkList.innerHTML = links.map((link, index) => `
+        <div>
+            <a href="${link}" target="_blank">${link}</a>
+            <span class="delete-link" onclick="deleteLink(${index})">❌</span>
+        </div>
+    `).join('');
+        }
+
+        // Удаление ссылки
+        function deleteLink(index) {
+            links.splice(index, 1);
+            saveData();
+            loadLinks();
+        }
+
+        // Вызов loadData при загрузке страницы
+        window.onload = function () {
+            loadData();
+            loadQuestion(); // Загрузка первого вопроса при старте
+        };
+
+    </script>
+</body>
+
+</html>
